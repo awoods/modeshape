@@ -1939,8 +1939,8 @@ public class JcrRepository implements org.modeshape.jcr.api.Repository {
     protected long determineInitialDelay( String initialTimeExpression ) {
         Matcher matcher = RepositoryConfiguration.INITIAL_TIME_PATTERN.matcher(initialTimeExpression);
         if (matcher.matches()) {
-            int hours = Integer.decode(matcher.group(1));
-            int mins = Integer.decode(matcher.group(2));
+            int hours = Integer.valueOf(matcher.group(1));
+            int mins = Integer.valueOf(matcher.group(2));
             LocalDateTime dateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(hours, mins));
             long delay = dateTime.toInstant(ZoneOffset.UTC).toEpochMilli() - System.currentTimeMillis();
             if (delay <= 0L) {
