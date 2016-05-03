@@ -1941,7 +1941,7 @@ public class JcrRepository implements org.modeshape.jcr.api.Repository {
         if (matcher.matches()) {
             int hours = Integer.valueOf(matcher.group(1));
             int mins = Integer.valueOf(matcher.group(2));
-            LocalDateTime dateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(hours, mins));
+            LocalDateTime dateTime = LocalDateTime.of(LocalDate.now(ZoneOffset.UTC), LocalTime.of(hours, mins));
             long delay = dateTime.toInstant(ZoneOffset.UTC).toEpochMilli() - System.currentTimeMillis();
             if (delay <= 0L) {
                 delay = dateTime.plusDays(1).toInstant(ZoneOffset.UTC).toEpochMilli() - System.currentTimeMillis();
